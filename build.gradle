@@ -4,13 +4,24 @@ plugins {
 
 group 'com.truextend'
 version '1.0-SNAPSHOT'
-sourceCompatibility = '1.8'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 
 repositories {
     mavenCentral()
 }
 
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
 dependencies {
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.5.2'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.0.0'
+    testImplementation 'org.hamcrest:hamcrest:2.1'
 }
