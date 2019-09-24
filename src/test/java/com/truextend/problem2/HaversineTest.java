@@ -27,9 +27,6 @@ public class HaversineTest {
     @Mock
     private Classroom classroom;
 
-    @InjectMocks
-    private Haversine haversine;
-
     @AfterEach
     public void tearDown() {
         verify(student, never()).getName();
@@ -45,7 +42,7 @@ public class HaversineTest {
 
     @Test
     public void calculateDistance_WithCoordinatesByDefault_ReturnsZero() {
-        double distance = haversine.calculateDistance(classroom, student);
+        double distance = Haversine.calculateDistance(classroom, student);
         assertThat(distance, is(0.0));
 
         verify(student).getLatitude();
@@ -59,8 +56,8 @@ public class HaversineTest {
         when(student.getLatitude()).thenReturn(1.0, -1.0);
         when(student.getLongitude()).thenReturn(1.0, -1.0);
 
-        double distance = haversine.calculateDistance(classroom, student);
-        double inverseDistance = haversine.calculateDistance(classroom, student);
+        double distance = Haversine.calculateDistance(classroom, student);
+        double inverseDistance = Haversine.calculateDistance(classroom, student);
         assertThat(distance, is(inverseDistance));
 
         verify(student, times(2)).getLatitude();

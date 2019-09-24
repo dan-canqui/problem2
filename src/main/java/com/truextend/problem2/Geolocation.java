@@ -15,29 +15,6 @@ import java.util.stream.Stream;
 public class Geolocation {
 
     /**
-     * Stores the haversine instance to calculate the distance between coordinates.
-     */
-    private Haversine haversine;
-
-    /**
-     * Returns the value of 'haversine' property.
-     *
-     * @return the haversine instance.
-     */
-    public Haversine getHaversine() {
-        return haversine;
-    }
-
-    /**
-     * Sets the value of the 'haversine' property.
-     *
-     * @param haversine to be set.
-     */
-    public void setHaversine(Haversine haversine) {
-        this.haversine = haversine;
-    }
-
-    /**
      * Finds the students inside in a list of classrooms.
      *
      * @param studentList   list of student.
@@ -62,7 +39,7 @@ public class Geolocation {
      */
     private Stream<Student> findStudentsInClass(List<Student> studentList, Classroom classroom) {
         return studentList.stream()
-                .filter(student -> haversine.calculateDistance(classroom, student) <= classroom.getDistanceToCenter());
+                .filter(student -> Haversine.calculateDistance(classroom, student) <= classroom.getDistanceToCenter());
     }
 
     /**

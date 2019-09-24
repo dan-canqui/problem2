@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
@@ -19,11 +18,9 @@ import static com.truextend.problem2.util.CoordinateUtil.buildStudent;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,9 +29,6 @@ public class GeolocationTest {
     private List<Classroom> classroomList;
 
     private List<Student> studentList;
-
-    @Spy
-    private Haversine haversine;
 
     @InjectMocks
     private Geolocation geolocation;
@@ -53,9 +47,6 @@ public class GeolocationTest {
     public void tearDown() {
         classroomList = classroomList == null ? Collections.emptyList() : classroomList;
         studentList = studentList == null ? Collections.emptyList() : studentList;
-
-        int total = classroomList.size() * studentList.size();
-        verify(haversine, times(total)).calculateDistance(any(Classroom.class), any(Student.class));
 
         studentList.forEach(student -> {
             verify(student, never()).getName();
