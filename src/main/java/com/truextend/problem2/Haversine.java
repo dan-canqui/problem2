@@ -5,7 +5,7 @@ import com.truextend.problem2.coordinate.Coordinate;
 /**
  * Implements the Haversine Algorithm.
  */
-public class Haversine {
+public final class Haversine {
 
     /**
      * Stores the earth radios in kilometers.
@@ -24,7 +24,7 @@ public class Haversine {
      * @param second second coordinates.
      * @return the calculated distance.
      */
-    public double calculateDistance(Coordinate first, Coordinate second) {
+    public static double calculateDistance(Coordinate first, Coordinate second) {
         double firstLatitude = Math.toRadians(first.getLatitude());
         double secondLatitude = Math.toRadians(second.getLatitude());
         double deltaLongitude = Math.toRadians(second.getLongitude() - first.getLongitude());
